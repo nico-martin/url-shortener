@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteBase /
+
+# If the request is not a real file or directory
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirect all other requests to index.php with a "key" GET parameter
+RewriteRule ^([a-zA-Z0-9]{4})$ index.php?key=$1 [QSA,L]
+
+<Files "urls.json">
+    Order allow,deny
+    Deny from all
+</Files>
